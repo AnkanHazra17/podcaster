@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { Input } from './ui/input'
 import Image from 'next/image'
-import { usedebounce } from '@/lib/useDebounce';
+import { useDebounce } from '@/lib/useDebounce';
 import { usePathname, useRouter } from 'next/navigation';
 
 
@@ -11,7 +11,7 @@ const SearchBar = () => {
     const [search, setSearch] = useState("");
     const router = useRouter();
     const pathname = usePathname();
-    const debouncedValue = usedebounce(search, 500);
+    const debouncedValue = useDebounce(search, 500);
 
     useEffect(() => {
         if(debouncedValue){
