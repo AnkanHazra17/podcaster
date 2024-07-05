@@ -161,3 +161,20 @@ export const updatePodcastviews = mutation({
         return await ctx.db.patch(args.podcastId, {views: podcast.views + 1});
     }
 })
+
+export const getAllPodcast = query({
+    args: {},
+    handler: async(ctx) => {
+        const podcast = await ctx.db.query("podcasts").collect();
+
+        const podcastData = podcast.map((p) => {
+            return {
+                podcastTitle: p.podcastTitle,
+                author: p.author,
+                views: p.views
+            }
+        })
+
+        return podcastData
+    }
+})

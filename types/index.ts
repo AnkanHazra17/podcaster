@@ -136,3 +136,27 @@ export type UseDotButtonType = {
   scrollSnaps: number[];
   onDotButtonClick: (index: number) => void;
 };
+
+export type UserType = {
+  userName: string
+  email: string
+  podcasts: number
+}
+
+export type PodcastType = {
+  podcastTitle: string
+  author: string
+  views: number
+}
+
+export interface TableProps<T> {
+  data: T[];
+}
+
+// export interface TableProps {
+//   data: UserType[] | PodcastType[],
+// }
+
+// export interface PodcastTable {
+//   podcastData: PodcastType[],
+// }

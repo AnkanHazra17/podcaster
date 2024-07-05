@@ -115,3 +115,24 @@ export const getTopUserByPodcastCount = query({
     return userData.sort((a, b) => b.totalPodcasts - a.totalPodcasts);
   },
 });
+
+export const getAllUserdata = query({
+  args: {},
+  handler: async(ctx) => {
+    const user = await ctx.db.query("users").collect();
+
+    const userData = await Promise.all(
+      user.map(async(u) => {
+        const podcast = await ctx.db.query("podcasts").filter((q) => q.eq(q.field("authorId"), u.clerkId)).collect();
+
+        return {
+          userName: u.name,
+          email: u.email,
+          podcasts: podcast.length
+        }
+      })
+    )
+
+    return userData
+  }
+})
