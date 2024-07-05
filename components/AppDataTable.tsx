@@ -133,7 +133,7 @@ const AppDataTable = ({type}: {type: string}) => {
     <div className='w-full p-6 rounded-xl bg-black-1 text-white shadow-lg transition-transform transform hover:-translate-y-2 hover:shadow-2xl hover:scale-105'>
       <div className='flex items-center py-4'>
         <Input
-          placeholder="Filter emails..."
+          placeholder={type === "users" ? "Filter emails..." : "Filter podcasts..."}
           value={type === "users" ? 
             (table.getColumn("email")?.getFilterValue() as string) ?? "" : 
             (table.getColumn("podcastTitle")?.getFilterValue() as string)
